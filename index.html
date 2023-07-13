@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya&family=Alegreya+Sans&family=Merriweather&family=Merriweather+Sans&family=Nunito&family=Nunito+Sans&family=Quattrocento&family=Quattrocento+Sans&family=Roboto&family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+3:wght@200&display=swap" rel="stylesheet">
+        <title>Weather Dashboard</title>
+    </head>
+    <body>
+        <nav>
+            <h1 class="app-title"> Weather Dashboard</h1>
+        </nav>
+  
+
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-4">
+    
+          <div class="card">
+            <h3 class="card-header">Search your city:</h3>
+            <form id="city-form" class="card-body">
+              <label class="form-label" for="city">City</label>
+              <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+              <button type="submit" class="btn">Search</button>
+            </form>
+            <hr style="height:5px;background-color:blue">
+            <h3 class="card-header"> Major Cities</h3>
+            <div id="major-cities-buttons" class="card-body">
+                <button class="btn">Atlanta</button>
+                <button class="btn">Austin</button>
+                <button class="btn">Denver</button>
+                <button class="btn">Chicago</button>
+                <button class="btn">New York</button>
+                <button class="btn">Orlando</button>
+                <button class="btn">San Francisco</button>
+                <button class="btn">Seattle</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <h2 class="subtitle"> Current City:<span id="Current-City-search"></span></h2>
+            <div id="current-city-container"></div>
+            <div id="5-day-forcast">
+                <h2 class="subtitle" display = "hidden"> 5 Day forecast:</h2>
+                <div id="five-day-container" class="list-group"></div>
+            </div>
+          </div>
+    </main>
+    </body>
+    <script src="./assets/main.js"></script>
+</html>
