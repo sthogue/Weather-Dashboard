@@ -137,13 +137,7 @@ background-color: rgba(255, 255, 255, 1);
 border-radius: var(--border-radius);
 }
 
-.icon-danger {
-color: rgb(255, 70, 70);
-}
 
-.icon-success {
-color: rgb(29, 153, 255);
-}
 
 /* CARDS */
 .card {
@@ -287,6 +281,10 @@ flex: 0 0 calc(100% * 11 / 12 - 2%);
 
 .col-12 {
 flex: 0 0 100%;
+}
+
+#today-weather-icon {
+    max-height: 5em;
 }
 
 /* col-sm */

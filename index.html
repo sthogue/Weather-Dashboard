@@ -18,12 +18,11 @@
 
     <main class="flex-row justify-space-between">
         <div class="col-12 col-md-4">
-    
           <div class="card">
             <h3 class="card-header">Search your city:</h3>
             <form id="city-form" class="card-body">
-              <label class="form-label" for="city">City</label>
-              <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+              <label class="form-label" for="city-input">City</label>
+              <input name="city" id="city-input" type="text" autofocus="true" class="form-input" />
               <button type="submit" class="btn">Search</button>
             </form>
             <hr style="height:5px;background-color:blue">
@@ -41,11 +40,62 @@
           </div>
         </div>
         <div class="col-12 col-md-8">
-            <h2 class="subtitle"> Current City:<span id="Current-City-search"></span></h2>
+            <h2 class="subtitle"> Current City:<span id="Current-City-search"></span><img src="" id="today-weather-icon"></h2>
             <div id="current-city-container"></div>
             <div id="5-day-forcast">
-                <h2 class="subtitle" display = "hidden"> 5 Day forecast:</h2>
-                <div id="five-day-container" class="list-group"></div>
+                <h2 class="subtitle flex-row" display = "hide"> 5 Day forecast:</h2>
+                <div id="five-day-container" class="list-group flex-row">
+                  <!-- Day 1 Card -->
+                  <div class="card flex-row" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><span id="Day-one-date"></span></h5>
+                      <p id="temp-day-1"></p>
+                      <p id="Wind-day-1"></p>
+                      <p id="humidity-day-1"></p>
+                    </div>
+                  </div>
+                  <!-- Day 2 Card -->
+                  <div class="card flex-row" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><span id="Day-two-date"></span></h5>
+                      <p id="temp-day-2"></p>
+                      <p id="Wind-day-2"></p>
+                      <p id="humidity-day-2"></p>
+                    </div>
+                  </div>
+                  <!-- Day 3 Card -->
+                  <div class="card flex-row" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><span id="Day-three-date"></span></h5>
+                      <p id="temp-day-3"></p>
+                      <p id="Wind-day-3"></p>
+                      <p id="humidity-day-3"></p>
+                    </div>
+                  </div>
+                  <!-- Day 4 Card -->
+                  <div class="card flex-row" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><span id="Day-four-date"></span></h5>
+                      <p id="temp-day-4"></p>
+                      <p id="Wind-day-4"></p>
+                      <p id="humidity-day-4"></p>
+                    </div>
+                  </div>
+                  <!-- Day 5 Card -->
+                  <div class="card flex-row" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><span id="Day-five-date"></span></h5>
+                      <p id="temp-day-5"></p>
+                      <p id="Wind-day-5"></p>
+                      <p id="humidity-day-5"></p>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
     </main>
