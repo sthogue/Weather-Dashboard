@@ -200,11 +200,9 @@ function createCityButton (data){
     recentCitiesEl.append(newBtn)
 }
 
-// function loadLocalStorage(data){
-//   var cityPushed = this.button
-//   console.log(cityPushed)
-//   var cityInfo = JSON.parse(localStorage.getItem(cityPushed));
-  
+function loadLocalStorage(data){
+}
+
 function clearData (){
   // clears out data in the currentCityDataEl child
   while(currentCityDataEl.firstChild){
@@ -213,5 +211,5 @@ function clearData (){
 } 
 
 // }
-//recentCitiesEl.addEventListener('click', loadLocalStorage);
+recentCitiesEl.addEventListener('click', loadLocalStorage);
 userFormEl.addEventListener('submit', formSubmitHandler);
