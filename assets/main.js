@@ -91,12 +91,12 @@ var getCityData = function (lon, lat) {
           console.log("No results found!");
           fiveDayContainerEl.innerHTML = "No results found"
         } else{
+          displayCurrentDayInfo(locInfo.list[0])
           for(var i = 1; i < 6; i++){
             displayFiveDayInfo(locInfo.list[i])
           }
-          
         }
-        displayCurrentDayInfo(locInfo.list[0])
+        
         createCityButton(locInfo.city)
       })
       .catch(function (error) {
@@ -110,7 +110,6 @@ function displayFiveDayInfo(list){
   var dayCard = document.createElement("div");
   dayCard.classList.add("list-group", "flex-row");
   
-
   var dayBody = document.createElement("div");
   dayBody.classList.add("card", "flex-body" ,);
   dayBody.style.cssText ="width: 18rem;";
@@ -141,6 +140,7 @@ function displayFiveDayInfo(list){
 }
 function displayCurrentDayInfo(data){
   // gets current weather image id and updates image 
+  
   var currentWeatherIcon = document.getElementById("today-weather-icon");
   var weatherIconSrc = "https://openweathermap.org/img/wn/" + data.weather[0].icon+"@2x.png";
   currentWeatherIcon.src = weatherIconSrc
@@ -167,18 +167,12 @@ function displayCurrentDayInfo(data){
 }
 
 function createCityButton (data){
-  userFormEl.addEventListener("submit", function(event){
-    event.preventDefault();
-
     var currentCity = JSON.parse(localStorage.getItem("city")) || [];
     var cityInfo = {
         City: data.name, lat:data.coord.lat, lon:data.coord.lon}
         
     currentCity.push(cityInfo);
     localStorage.setItem("city", JSON.stringify(currentCity));
-
-  })
-
   
 }
 
