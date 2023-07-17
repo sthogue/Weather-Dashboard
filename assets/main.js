@@ -172,7 +172,7 @@ function createCityButton (data){
 
     var currentCity = JSON.parse(localStorage.getItem("city")) || [];
     var cityInfo = {
-        City: data.name.val(), lat:data.coord.lat, lon:data.coord.lon}
+        City: data.name, lat:data.coord.lat, lon:data.coord.lon}
         
     currentCity.push(cityInfo);
     localStorage.setItem("city", JSON.stringify(currentCity));
