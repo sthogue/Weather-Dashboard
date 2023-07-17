@@ -29,6 +29,7 @@ var formSubmitHandler = function (event) {
                 console.log(lat);
                 console.log(lon);
                 getCityData(lon, lat);
+
             });
             } else {
             alert('Error: ' + response.statusText);
@@ -171,14 +172,15 @@ function createCityButton (data){
     var currentCity = JSON.parse(localStorage.getItem("city")) || [];
     var cityInfo = {
          lat:data.coord.lat, lon:data.coord.lon}
-        
+    
+    var cityName = data.name + "," + data.country
     currentCity.push(cityInfo);
-    localStorage.setItem(data.name, JSON.stringify(currentCity));
+    localStorage.setItem(cityName, JSON.stringify(currentCity));
     
     var newBtn = document.createElement("button");
     newBtn.classList.add("btn");
-    newBtn.setAttribute('id', data.name);
-    newBtn.innerHTML = data.name;
+    newBtn.setAttribute('id', cityName);
+    newBtn.innerHTML = cityName;
     recentCitiesEl.append(newBtn)
 }
 
@@ -190,5 +192,5 @@ function createCityButton (data){
  
 
 // }
-recentCitiesEl.addEventListener('click', loadLocalStorage);
+//recentCitiesEl.addEventListener('click', loadLocalStorage);
 userFormEl.addEventListener('submit', formSubmitHandler);
