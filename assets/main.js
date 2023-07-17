@@ -110,6 +110,7 @@ function displayFiveDayInfo(list){
   // gets 5 day forecast and renders them into their own cards.
   console.log(list)
 
+  
   //creates container for all the cards 
   var dayCard = document.createElement("div");
   dayCard.classList.add("list-group", "flex-row");
@@ -149,7 +150,7 @@ function displayFiveDayInfo(list){
 }
 function displayCurrentDayInfo(data){
   //clears card data so duplicate data doesn't append
-  clearData();
+  clearCurrentData();
   // gets current weather image id and updates image 
   var currentWeatherIcon = document.getElementById("today-weather-icon");
   var weatherIconSrc = "https://openweathermap.org/img/wn/" + data.weather[0].icon+"@2x.png";
@@ -192,23 +193,56 @@ function createCityButton (data){
     currentCity.push(cityInfo);
     localStorage.setItem(cityName, JSON.stringify(currentCity));
   
-  //creates new button with city name and adds id 
+    var buttonName = document.querySelectorAll(".btnCity")
+    console.log(buttonName)
+
+    for(var i = 0; i <= buttonName.NodeList[i].length; i++){
+  
+    if (cityName == buttonName) {
+      return      
+    } else {
+      //creates new button with city name and adds id 
     var newBtn = document.createElement("button");
-    newBtn.classList.add("btn");
+    newBtn.classList.add("btnCity");
     newBtn.setAttribute('id', cityName);
     newBtn.innerHTML = cityName;
     recentCitiesEl.append(newBtn)
+    var btnList = document.querySelectorAll(".btn-search")
+    btnList.forEach(element => element.addEventListener("click",loadLocalStorage))
+    }
+    }
+    
 }
 
-function loadLocalStorage(data){
+function loadLocalStorage(event){
+  var cityName = event.target.getAttribute("id")
+  
+  var cityInfo = JSON.parse(localStorage.getItem(cityName));
+  
+  console.log(cityInfo)
+
+  lon = cityInfo[0].lon
+  lat = cityInfo[0].lat
+  
+  clearCardData();
+  getCityData(lon, lat)
 }
 
-function clearData (){
+
+function clearCurrentData (){
   // clears out data in the currentCityDataEl child
   while(currentCityDataEl.firstChild){
     currentCityDataEl.removeChild(currentCityDataEl.firstChild)
   }
+ 
 } 
+
+function clearCardData(){
+  // clears out five day container to ensure there aren't duplicate cards
+  while(fiveDayContainerEl.firstChild){
+    fiveDayContainerEl.removeChild(fiveDayContainerEl.firstChild)
+  }
+}
 
 // }
 recentCitiesEl.addEventListener('click', loadLocalStorage);
