@@ -6,11 +6,10 @@ var currentCitySearch = document.querySelector('#Current-City-search');
 var masterResultsContainerEl = document.querySelector("#master-results-container");
 var currentCityDayContainerEl = document.querySelector("#current-city-container");
 var fiveDayPromptEl = document.querySelector("#five-day-forecast");
+var recentCitiesEl = document.querySelector("#recent-cities-buttons")
 var lon = "";
 var lat = "";
 
-var tempContainer = document.getElementsByClassName(".tempContainer");
-var windContainer = document.getElementsByClassName(".windContainer");
 
 // form submit event handler for search results
 var formSubmitHandler = function (event) {
@@ -73,7 +72,7 @@ var formSubmitHandler = function (event) {
 // gets city data from converted lon at lat
 var getCityData = function (lon, lat) {
   
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon=' + lon +'&cnt=6&units=imperial&appid=349ff99c6078919fabcd80ffc046fad1';
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon=' + lon +'&units=imperial&appid=349ff99c6078919fabcd80ffc046fad1';
   
     fetch(apiUrl)
       .then(function (response) {
@@ -92,8 +91,9 @@ var getCityData = function (lon, lat) {
           fiveDayContainerEl.innerHTML = "No results found"
         } else{
           displayCurrentDayInfo(locInfo.list[0])
-          for(var i = 1; i < 6; i++){
+          for(var i = 0; i < locInfo.list.length; i+=8){
             displayFiveDayInfo(locInfo.list[i])
+            console.log(locInfo.list)
           }
         }
         
@@ -117,6 +117,7 @@ function displayFiveDayInfo(list){
 
   var dayEl = document.createElement("h3");
   var dt = list.dt
+  console.log(dt)
   var date = new Date (dt * 1000);
   var date_str = [date.getMonth()+1, date.getDate(), date.getFullYear()].join("/");
   dayEl.textContent = date_str 
@@ -169,11 +170,25 @@ function displayCurrentDayInfo(data){
 function createCityButton (data){
     var currentCity = JSON.parse(localStorage.getItem("city")) || [];
     var cityInfo = {
-        City: data.name, lat:data.coord.lat, lon:data.coord.lon}
+         lat:data.coord.lat, lon:data.coord.lon}
         
     currentCity.push(cityInfo);
-    localStorage.setItem("city", JSON.stringify(currentCity));
-  
+    localStorage.setItem(data.name, JSON.stringify(currentCity));
+    
+    var newBtn = document.createElement("button");
+    newBtn.classList.add("btn");
+    newBtn.setAttribute('id', data.name);
+    newBtn.innerHTML = data.name;
+    recentCitiesEl.append(newBtn)
 }
 
+// function loadLocalStorage(data){
+//   var cityPushed = this.button
+//   console.log(cityPushed)
+//   var cityInfo = JSON.parse(localStorage.getItem(cityPushed));
+  
+ 
+
+// }
+recentCitiesEl.addEventListener('click', loadLocalStorage);
 userFormEl.addEventListener('submit', formSubmitHandler);
