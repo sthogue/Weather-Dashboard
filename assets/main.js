@@ -6,7 +6,8 @@ var currentCitySearch = document.querySelector('#Current-City-search');
 var masterResultsContainerEl = document.querySelector("#master-results-container");
 var currentCityDayContainerEl = document.querySelector("#current-city-container");
 var fiveDayPromptEl = document.querySelector("#five-day-forecast");
-var recentCitiesEl = document.querySelector("#recent-cities-buttons")
+var recentCitiesEl = document.querySelector("#recent-cities-buttons");
+var currentCityDataEl = document.querySelector("#current-city-data");
 var lon = "";
 var lat = "";
 
@@ -60,13 +61,13 @@ var formSubmitHandler = function (event) {
             alert('Error: ' + response.statusText);
             }
         })
-        .catch(function (error) {
+        .catch(function (error) { //if an error occurs this prompt will show up for the user 
             alert('Unable to connect OpenWeather.com connection');
         });
       
   
       fiveDayContainerEl.textContent = '';
-      cityInputEl.value = '';;
+      cityInputEl.value = '';
     }
   };
 
@@ -106,8 +107,10 @@ var getCityData = function (lon, lat) {
   };
 
 function displayFiveDayInfo(list){
+  // gets 5 day forecast and renders them into their own cards.
   console.log(list)
 
+  //creates container for all the cards 
   var dayCard = document.createElement("div");
   dayCard.classList.add("list-group", "flex-row");
   
@@ -116,6 +119,7 @@ function displayFiveDayInfo(list){
   dayBody.style.cssText ="width: 18rem;";
   dayCard.append(dayBody);
 
+  // takes time element in YYYY-MM-DD format and changes it to MM/DD/YY
   var dayEl = document.createElement("h3");
   var dt = list.dt
   console.log(dt)
@@ -123,14 +127,17 @@ function displayFiveDayInfo(list){
   var date_str = [date.getMonth()+1, date.getDate(), date.getFullYear()].join("/");
   dayEl.textContent = date_str 
 
+  // gets and renders image for weather in each element
   var imgIconEL = document.createElement("img");
   var imgSrc = "https://openweathermap.org/img/wn/" + list.weather[0].icon+"@2x.png";
   imgIconEL.src = imgSrc
 
+  // renders temp for each day
   var tempContentEL = document.createElement("p");
   var temp = list.main.temp;
   tempContentEL.innerHTML = "<strong>Temp:</strong> " + Math.round(temp) + "F";
 
+  // gets wind for each day
   var windContainerEL = document.createElement("p");
   windContainerEL.innerHTML = "<strong>Wind:</strong> " + list.wind.speed + " MPH";
 
@@ -141,42 +148,51 @@ function displayFiveDayInfo(list){
   fiveDayContainerEl.append(dayCard)
 }
 function displayCurrentDayInfo(data){
+  //clears card data so duplicate data doesn't append
+  clearData();
   // gets current weather image id and updates image 
-  
   var currentWeatherIcon = document.getElementById("today-weather-icon");
   var weatherIconSrc = "https://openweathermap.org/img/wn/" + data.weather[0].icon+"@2x.png";
   currentWeatherIcon.src = weatherIconSrc
 
+  // current date formate is YYYY-MM-DD this converts it to MM/DD/YYYY then renders it on the page 
   var currentDateEl = document.createElement("h3");
   var dt = data.dt
   var date = new Date (dt * 1000);
   var date_str = [date.getMonth()+1, date.getDate(), date.getFullYear()].join("/");
   currentDateEl.textContent = date_str 
 
+  // creates Temperature element then gets temp from API and then inserts it to page
   var currentTempEl = document.createElement("p");
   var currentTemp = data.main.temp;
   currentTempEl.innerHTML = "<strong>Temp:</strong> " + Math.round(currentTemp) + "F";
 
+  // creates Wind element then gets temp from API and then inserts it to page
   var currentWindEl = document.createElement("p");
   currentWindEl.innerHTML = "<strong>Wind:</strong> " + data.wind.speed + " MPH";
 
+// creates Humidity element then gets temp from API and then inserts it to page
   var currentHumidityEl = document.createElement("p");
   currentHumidityEl.innerHTML = "<strong>Humidity:</strong> " + data.main.humidity + "%";
 
+  // adds card element to page and then appends it with temp, wind and humidify 
   currentCityDayContainerEl.classList.add("card")
-  currentCityDayContainerEl.append(currentDateEl, currentTempEl, currentWindEl)
+  currentCityDataEl.append(currentDateEl, currentTempEl, currentWindEl)
 
 }
 
 function createCityButton (data){
+  // calls on local storage and gets city data
     var currentCity = JSON.parse(localStorage.getItem("city")) || [];
     var cityInfo = {
          lat:data.coord.lat, lon:data.coord.lon}
-    
-    var cityName = data.name + "," + data.country
+   
+  // name of city we will be using as the Key 
+    var cityName = data.name +"," +data.country
     currentCity.push(cityInfo);
     localStorage.setItem(cityName, JSON.stringify(currentCity));
-    
+  
+  //creates new button with city name and adds id 
     var newBtn = document.createElement("button");
     newBtn.classList.add("btn");
     newBtn.setAttribute('id', cityName);
@@ -189,7 +205,12 @@ function createCityButton (data){
 //   console.log(cityPushed)
 //   var cityInfo = JSON.parse(localStorage.getItem(cityPushed));
   
- 
+function clearData (){
+  // clears out data in the currentCityDataEl child
+  while(currentCityDataEl.firstChild){
+    currentCityDataEl.removeChild(currentCityDataEl.firstChild)
+  }
+} 
 
 // }
 //recentCitiesEl.addEventListener('click', loadLocalStorage);
