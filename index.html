@@ -28,76 +28,19 @@
             <hr style="height:5px;background-color:blue">
             <h3 class="card-header"> Major Cities</h3>
             <div id="major-cities-buttons" class="card-body">
-                <button class="btn">Atlanta</button>
-                <button class="btn">Austin</button>
-                <button class="btn">Denver</button>
-                <button class="btn">Chicago</button>
-                <button class="btn">New York</button>
-                <button class="btn">Orlando</button>
-                <button class="btn">San Francisco</button>
-                <button class="btn">Seattle</button>
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-8">
-            <h2 class="subtitle"> Current City:<span id="Current-City-search"></span><img src="" id="today-weather-icon"></h2>
-            <div id="current-city-container"></div>
-            <div id="5-day-forcast">
-                <h2 class="subtitle flex-row" display = "hide"> 5 Day forecast:</h2>
-                <div id="five-day-container" class="list-group flex-row">
-                  <!-- Day 1 Card -->
-                  <div class="card flex-row" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title"><span id="Day-one-date"></span></h5>
-                      <p id="temp-day-1"></p>
-                      <p id="Wind-day-1"></p>
-                      <p id="humidity-day-1"></p>
-                    </div>
-                  </div>
-                  <!-- Day 2 Card -->
-                  <div class="card flex-row" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title"><span id="Day-two-date"></span></h5>
-                      <p id="temp-day-2"></p>
-                      <p id="Wind-day-2"></p>
-                      <p id="humidity-day-2"></p>
-                    </div>
-                  </div>
-                  <!-- Day 3 Card -->
-                  <div class="card flex-row" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title"><span id="Day-three-date"></span></h5>
-                      <p id="temp-day-3"></p>
-                      <p id="Wind-day-3"></p>
-                      <p id="humidity-day-3"></p>
-                    </div>
-                  </div>
-                  <!-- Day 4 Card -->
-                  <div class="card flex-row" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title"><span id="Day-four-date"></span></h5>
-                      <p id="temp-day-4"></p>
-                      <p id="Wind-day-4"></p>
-                      <p id="humidity-day-4"></p>
-                    </div>
-                  </div>
-                  <!-- Day 5 Card -->
-                  <div class="card flex-row" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title"><span id="Day-five-date"></span></h5>
-                      <p id="temp-day-5"></p>
-                      <p id="Wind-day-5"></p>
-                      <p id="humidity-day-5"></p>
-                    </div>
-                  </div>
-                </div>
+        <div id="master-results-container" class="col-12 col-md-8">
+            
+            <div id="current-city-container">
+              <h2 class="subtitle"><span id="Current-City-search"></span><img src="" id="today-weather-icon"></h2>
+            </div>
+            <div class = "flex-row" id="five-day-forecast-container">
+              <h2 class="subtitle"><span id="five-day-forecast"></span></h2>
             </div>
           </div>
+        </div>
     </main>
     </body>
     <script src="./assets/main.js"></script>
