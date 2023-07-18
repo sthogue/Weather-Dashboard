@@ -45,7 +45,7 @@ var formSubmitHandler = function (event) {
       cityInputEl.value = '';
     } else {
         // converts Zip Code to lon at lats
-        var apiUrl = 'http://api.openweathermap.org/geo/1.0/zip?zip='+ userInputEl +'&appid=349ff99c6078919fabcd80ffc046fad1';
+        var apiUrl = 'https://api.openweathermap.org/geo/1.0/zip?zip='+ userInputEl +'&appid=349ff99c6078919fabcd80ffc046fad1';
         fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
