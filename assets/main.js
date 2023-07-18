@@ -19,7 +19,7 @@ var formSubmitHandler = function (event) {
     var userInputEl = cityInputEl.value.trim();
   
     if (isNaN(userInputEl)) {
-        var apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+ userInputEl +'&limit=1&appid=349ff99c6078919fabcd80ffc046fad1';
+        var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ userInputEl +'&limit=1&appid=349ff99c6078919fabcd80ffc046fad1';
         fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
