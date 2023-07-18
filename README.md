@@ -17,7 +17,7 @@ Start of page of application screenshot of first page of application Screenshot 
 ![screenshot of application](/assets/Screenshot%20of%20App.png)
 
 ## Link
-[Click me]
+[Click me](https://sthogue.github.io/Weather-Dashboard/)
 
 ## Credit
 
