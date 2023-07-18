@@ -186,22 +186,20 @@ function createCityButton (data){
   // calls on local storage and gets city data
     var currentCity = JSON.parse(localStorage.getItem("city")) || [];
     var cityInfo = {
-         lat:data.coord.lat, lon:data.coord.lon}
+         City:data.name, lat:data.coord.lat, lon:data.coord.lon}
    
   // name of city we will be using as the Key 
     var cityName = data.name +"," +data.country
     currentCity.push(cityInfo);
-    localStorage.setItem(cityName, JSON.stringify(currentCity));
+    localStorage.setItem("city", JSON.stringify(currentCity));
   
-    var buttonName = document.querySelectorAll(".btnCity")
-    console.log(buttonName)
-
-    for(var i = 0; i <= buttonName.NodeList[i].length; i++){
+    var array =JSON.parse(localStorage.getItem("city"));
+    // for(var i = 0; i <= array.length; i++){
   
-    if (cityName == buttonName) {
-      return      
-    } else {
-      //creates new button with city name and adds id 
+    // if (cityName == array[i].city) {
+    //   return      
+    // } else {
+      // creates new button with city name and adds id 
     var newBtn = document.createElement("button");
     newBtn.classList.add("btnCity");
     newBtn.setAttribute('id', cityName);
@@ -210,9 +208,9 @@ function createCityButton (data){
     var btnList = document.querySelectorAll(".btn-search")
     btnList.forEach(element => element.addEventListener("click",loadLocalStorage))
     }
-    }
+//     }
     
-}
+// }
 
 function loadLocalStorage(event){
   var cityName = event.target.getAttribute("id")

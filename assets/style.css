@@ -11,6 +11,10 @@
 box-sizing: border-box;
 }
 
+hr{
+    height:5px;
+    background-color: var(--dark);
+}
 body {
 background-color: var(--primary);
 margin: 0;
